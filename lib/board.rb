@@ -68,6 +68,24 @@ class Board
         @board_grid.set_node(row, column, symbol)
     end
 
+    def set_empty_value (row, column, symbol)
+
+        is_empty = true
+        current_node = @board_grid.get_node(row, column)
+        if current_node.value == " "
+            current_node.value = symbol
+        else
+            is_empty = false
+        end
+        
+        return is_empty
+
+    end
+
+    def reset ()
+        @board_grid.set_all(" ")
+    end
+
     def get_board_array ()
         # nil -> Array
         # Get the board grid as a nested array with
@@ -115,5 +133,8 @@ end
 # main_board.set_value(2,0,"a")
 # main_board.set_value(2,1,"z")
 # main_board.set_value(2,2,"a")
+
+
+# main_board.reset()
 
 # puts main_board.show_board()

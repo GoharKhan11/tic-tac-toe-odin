@@ -210,6 +210,27 @@ class Grid
         current_node.value = new_value
     end
 
+    def set_all (new_value)
+        # any -> nil
+        # Changes the value in the all grid nodes
+
+        # Initial current row value is head of grid
+        current_row = @head
+
+        # Goes through all rows till nil encountered (no more rows)
+        until current_row == nil do
+            # Starts at first node of row
+            current_node = current_row
+            # Goes through row till nil encountered (no more nodes in row)
+            until current_node == nil do
+                current_node.value = new_value
+                current_node = current_node.right_node
+            end
+            current_row = current_row.down_node
+        end
+
+    end
+
     def get_diagonal_array (diagonal_type)
         # int -> array
 
