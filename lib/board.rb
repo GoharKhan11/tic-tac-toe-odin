@@ -3,6 +3,8 @@ require_relative "node-list.rb"
 class Board
 
     def initialize ()
+        # Create a 3x3 grid object with default values as
+        # single spaces.
         @board_grid = Grid.new(3, 3, " ")
     end
 
@@ -65,24 +67,41 @@ class Board
     end
 
     def set_value (row, column, symbol)
+        # int, int, any -> null
+        # Sets the value in the desired node to
+        # the symbol.
+
         @board_grid.set_node(row, column, symbol)
     end
 
     def set_empty_value (row, column, symbol)
+        # int, int, any -> bool
+        # Sets value in the desired node of the grid only
+        # if the grid is not already holding a value.
+        # Returns true if the node was empty else returns false.
 
+        # Default result value (is_empty) is true (assumes node is empty)
         is_empty = true
+        # Stores the desired node
         current_node = @board_grid.get_node(row, column)
+        # Checks if the node is empty
+        # (single space character is default empty node value for game board)
         if current_node.value == " "
+            # Sets node value as desired symbol (if empty)
             current_node.value = symbol
+        # If node is not empty sets result (is_empty) to false
         else
             is_empty = false
         end
-        
+        # Return is_empty boolean
         return is_empty
 
     end
 
     def reset ()
+        # nil -> nil
+        # Sets values in all grid nodes to single space.
+
         @board_grid.set_all(" ")
     end
 
